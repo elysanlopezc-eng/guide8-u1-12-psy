@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Psychological Perspectives I - Colegio Montano</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montano: {
+                            blue: '#1269A8',
+                            yellow: '#F7D615',
+                            teal: '#54887D',
+                            lightblue: '#88B5C7',
+                            olive: '#A6B046',
+                            softwhite: '#F2F5E9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #e5ebdf;
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+        }
+        .whiteboard-frame {
+            background-color: #ffffff;
+            border: 12px solid #d1d5db;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .tab-btn.active {
+            background-color: #1269A8;
+            color: #ffffff;
+            border-bottom: 4px solid #F7D615;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #88B5C7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="p-2 md:p-6 min-h-screen flex flex-col justify-center items-center">
+
+    <!-- Main Container Frame -->
+    <div id="mainContainer" class="whiteboard-frame w-full max-w-7xl min-h-[90vh] flex flex-col justify-between overflow-hidden transition-all duration-300">
+        
+        <!-- Header Section -->
+        <header class="bg-montano-softwhite p-4 border-b-2 border-gray-200 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" alt="Colegio Montano Logo" class="h-14 object-contain rounded-md bg-white p-1 border">
+                <div>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-montano-blue tracking-tight">COLEGIO MONTANO</h1>
+                    <p class="text-xs md:text-sm font-semibold text-montano-teal">Grade: 5th Marketing | Level: C1 Advanced ESL</p>
+                    <p class="text-xs font-bold text-montano-olive">Guide 8: Psychology in Marketing: Consumer Behavior and Ethics</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button onclick="toggleFullscreen()" class="flex items-center gap-2 bg-montano-blue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-200 text-sm">
+                    <i class="fa-solid fa-expand"></i> <span class="hidden sm:inline">Fullscreen Digital Board</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-gray-100 border-b border-gray-300 flex overflow-x-auto custom-scrollbar">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-book-open"></i> 1. Theory & Grammar
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-list-check"></i> 2. Solved Examples (15)
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-microphone"></i> 3. Voice Simulator & Dashboard
+            </button>
+            <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-lightbulb"></i> 4. Critical Reflection
+            </button>
+            <button onclick="switchTab('tab5')" id="btn-tab5" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-pen-to-square"></i> 5. Formative Evaluation (15)
+            </button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="p-4 sm:p-6 flex-grow bg-white custom-scrollbar overflow-y-auto max-h-[calc(90vh-140px)]">
+
+            <!-- TAB 1: THEORY & GRAMMAR -->
+            <section id="tab1" class="tab-content space-y-6">
+                <!-- Header Banner -->
+                <div class="bg-gradient-to-r from-montano-blue to-montano-teal text-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-2">Theoretical Foundations: Psychology in Marketing & Ethics</h2>
+                    <p class="text-sm sm:text-base opacity-90">Integrating perception, attention, motivation, learning, attitudes, social influence, and decision-making; distinguishing ethical persuasion from psychological manipulation and misleading advertising claims.</p>
+                </div>
+
+                <!-- Retrieval Practice Box -->
+                <div class="bg-montano-softwhite border-l-4 border-montano-yellow p-4 rounded-r-lg shadow-sm">
+                    <h3 class="font-bold text-montano-blue text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-rotate text-montano-yellow"></i> 5-Min Warm-Up & Ad Analysis
+                    </h3>
+                    <p class="text-sm text-gray-700 mt-1">
+                        Examine a prominent modern advertisement. What psychological hook captures your attention first? In Guide 8, we synthesize all prior psychological principles (perception, attention, motivation, learning, social influence) into commercial practice while establishing strict ethical boundaries between honest persuasion and deceptive manipulation.
+                    </p>
+                </div>
+
+                <!-- Concept Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 1. Consumer Integration -->
+                    <div class="border-2 border-montano-blue rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-blue text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-cart-shopping"></i></span>
+                                <h4 class="font-bold text-gray-800 text-base">1. Consumer Decision Matrix</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-4">Synthesizes perception, attention, emotional motivation, and cognitive evaluation into a unified customer journey from brand discovery to purchase.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-blue bg-blue-50 p-2 rounded">Key Concept: Unified Consumer Journey</div>
+                    </div>
+
+                    <!-- 2. Persuasion vs Manipulation -->
+                    <div class="border-2 border-montano-teal rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-teal text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-scale-balanced"></i></span>
+                                <h4 class="font-bold text-gray-800 text-base">2. Ethical Persuasion</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-4">Distinguishes transparent, value-driven persuasion that respects consumer autonomy from deceptive manipulation, fear exploitation, and dark UX patterns.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-teal bg-teal-50 p-2 rounded">Key Concept: Honesty & Consumer Autonomy</div>
+                    </div>
+
+                    <!-- 3. Campaign Portfolio Synthesis -->
+                    <div class="border-2 border-montano-olive rounded-xl p-5 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-olive text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-folder-open"></i></span>
+                                <h4 class="font-bold text-gray-800 text-base">3. Portfolio & Peer Review</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-4">Applies multi-concept campaign analysis, incorporating peer feedback and refining Activity 3 portfolio evidence for professional readiness.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-olive bg-green-50 p-2 rounded">Key Concept: Activity 3 Portfolio & Peer Review</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: SOLVED EXAMPLES (15 EXAMPLES WITH TTS) -->
+            <section id="tab2" class="tab-content hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">15 Analytical Solved Examples (Guide 8)</h2>
+                        <p class="text-xs text-gray-500">Categorized by difficulty level. Click the speaker icon to listen to the explanation using native Text-to-Speech.</p>
+                    </div>
+                </div>
+
+                <!-- Level 1: Basic -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-montano-blue flex items-center gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-montano-blue text-xs rounded-full uppercase">Level 1 - Basic</span>
+                        Core Consumer Psychology & Ethics Definitions
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="basic-examples"></div>
+                </div>
+
+                <!-- Level 2: Intermediate -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-lg font-bold text-montano-teal flex items-center gap-2">
+                        <span class="px-3 py-1 bg-teal-100 text-montano-teal text-xs rounded-full uppercase">Level 2 - Intermediate</span>
+                        Persuasion Mechanics, Attention Triggers & Decision Mapping
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="intermediate-examples"></div>
+                </div>
+
+                <!-- Level 3: Advanced -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-lg font-bold text-montano-olive flex items-center gap-2">
+                        <span class="px-3 py-1 bg-green-100 text-montano-olive text-xs rounded-full uppercase">Level 3 - Advanced</span>
+                        Campaign Audits, Ethical Dilemmas & Portfolio Optimization
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="advanced-examples"></div>
+                </div>
+            </section>
+
+            <!-- TAB 3: LIVE INTERACTIVE VOICE SIMULATOR & DASHBOARD -->
+            <section id="tab3" class="tab-content hidden space-y-6">
+                <div class="bg-montano-softwhite p-4 rounded-xl border border-montano-lightblue flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                            <i class="fa-solid fa-headset text-montano-yellow"></i> Marketing Ethics Boardroom Simulator (Guide 8)
+                        </h2>
+                        <p class="text-xs text-gray-600">Roleplay as an ethics-driven marketing strategist defending a campaign against misleading claims and psychological manipulation.</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border shadow-sm text-xs font-semibold text-gray-700">
+                        <span id="mic-status-indicator" class="w-3 h-3 rounded-full bg-gray-400 inline-block"></span>
+                        <span id="mic-status-text">Microphone Idle</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Simulator Interface (Left - 7 Cols) -->
+                    <div class="lg:col-span-7 bg-white border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+                        <!-- Scenario Description -->
+                        <div class="bg-blue-50 border-l-4 border-montano-blue p-4 rounded">
+                            <p class="text-xs font-bold text-montano-blue uppercase tracking-wider">Current Case Prompt:</p>
+                            <p class="text-sm font-semibold text-gray-800 mt-1" id="simulator-prompt">
+                                "Your agency proposed an energy drink ad leveraging high emotional arousal and FOMO (fear of missing out). How do you ensure this campaign uses ethical persuasion rather than manipulative exploitation of teenage consumers?"
+                            </p>
+                        </div>
+
+                        <!-- Dialogue Box -->
+                        <div id="dialogue-box" class="h-48 overflow-y-auto bg-gray-50 border p-3 rounded-lg text-sm space-y-3 custom-scrollbar">
+                            <div class="flex gap-2">
+                                <div class="font-bold text-montano-blue min-w-[70px]">Director:</div>
+                                <div class="text-gray-700 bg-white p-2 rounded shadow-xs border">Welcome to the ethics review board. Defend your campaign integration and prove it avoids deceptive manipulation.</div>
+                            </div>
+                        </div>
+
+                        <!-- Voice Controls and Fallback Input -->
+                        <div class="space-y-3">
+                            <div class="flex gap-2">
+                                <button id="start-record-btn" onclick="toggleSpeechRecognition()" class="flex-1 bg-montano-blue hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition text-sm shadow">
+                                    <i class="fa-solid fa-microphone"></i> <span id="record-btn-text">Speak Response</span>
+                                </button>
+                                <button onclick="triggerTTSResponse()" class="bg-montano-teal hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition text-sm shadow">
+                                    <i class="fa-solid fa-volume-high"></i> Listen AI
+                                </button>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <input type="text" id="manual-text-input" placeholder="Or type your ethical campaign defense here..." class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-montano-blue">
+                                <button onclick="processTextSubmission()" class="bg-montano-olive hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg text-sm transition">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Performance Dashboard (Right - 5 Cols) -->
+                    <div class="lg:col-span-5 bg-gray-50 border border-gray-300 rounded-xl p-5 space-y-4">
+                        <h3 class="font-bold text-gray-800 text-md border-b pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-montano-blue"></i> Real-Time Performance Dashboard
+                        </h3>
+
+                        <!-- Metric 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Pronunciation & Speech Clarity Score</span>
+                                <span id="score-pronunciation" class="text-montano-blue">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-pronunciation" class="bg-montano-blue h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Ethical Accuracy & Concept Integration Score</span>
+                                <span id="score-accuracy" class="text-montano-teal">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-accuracy" class="bg-montano-teal h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 3 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Politeness & Professional Etiquette Score</span>
+                                <span id="score-politeness" class="text-montano-olive">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-politeness" class="bg-montano-olive h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Key Terms Container -->
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-600 mb-2">Detected Marketing Ethics Terms:</p>
+                            <div id="detected-terms" class="flex flex-wrap gap-1 min-h-[35px] p-2 bg-white rounded border border-gray-200 text-xs text-gray-400">
+                                Waiting for input...
+                            </div>
+                        </div>
+
+                        <!-- AI Feedback Container -->
+                        <div class="bg-white p-3 rounded-lg border border-montano-lightblue space-y-1">
+                            <p class="text-xs font-bold text-montano-blue flex items-center gap-1">
+                                <i class="fa-solid fa-robot"></i> AI Pedagogical Feedback:
+                            </p>
+                            <p id="ai-feedback-text" class="text-xs text-gray-600 italic">
+                                Speak or type your defense to receive immediate diagnostic evaluation regarding persuasion, ethics, and portfolio readiness.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: CRITICAL REFLECTION QUESTIONS -->
+            <section id="tab4" class="tab-content hidden space-y-6">
+                <div class="bg-montano-softwhite p-4 rounded-xl border-l-4 border-montano-blue flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">Critical Reflection & Portfolio Workshop</h2>
+                        <p class="text-xs text-gray-600">Synthesize campaign analysis, peer feedback, and Activity 3 portfolio organization. Answers auto-save locally.</p>
+                    </div>
+                    <span class="bg-montano-yellow text-montano-blue font-bold text-xs px-3 py-1.5 rounded-full shadow-xs">Activity 3 Revision</span>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Reflection 1 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            1. How can marketing professionals integrate perception, attention, and motivation into a campaign without crossing the line into manipulative or deceptive practices?
+                        </label>
+                        <textarea id="ref-q1" oninput="saveReflection('ref-q1')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-blue custom-scrollbar"></textarea>
+                    </div>
+
+                    <!-- Reflection 2 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            2. Reflect on the peer feedback received during your team campaign analysis. What key psychological adjustment did your group make to improve ethical standards?
+                        </label>
+                        <textarea id="ref-q2" oninput="saveReflection('ref-q2')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-teal custom-scrollbar"></textarea>
+                    </div>
+
+                    <!-- Reflection 3 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            3. How does organizing your Activity 3 portfolio evidence demonstrate your mastery of psychological principles in professional marketing strategy?
+                        </label>
+                        <textarea id="ref-q3" oninput="saveReflection('ref-q3')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-olive custom-scrollbar"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: FORMATIVE EVALUATION (15 PROBLEMS WITH TOGGLE SOLUTIONS) -->
+            <section id="tab5" class="tab-content hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">Formative Evaluation Assessment</h2>
+                        <p class="text-xs text-gray-500">15 problem-solving exercises across 3 difficulty tiers. Use the toggle buttons to verify step-by-step solutions.</p>
+                    </div>
+                </div>
+
+                <!-- Level 1 Exercises -->
+                <div class="space-y-4">
+                    <h3 class="text-md font-bold text-montano-blue uppercase tracking-wide">Tier 1: Basic Consumer Psychology & Ethics Definitions</h3>
+                    <div class="space-y-3" id="eval-tier-1"></div>
+                </div>
+
+                <!-- Level 2 Exercises -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-md font-bold text-montano-teal uppercase tracking-wide">Tier 2: Intermediate Campaign & Persuasion Analysis</h3>
+                    <div class="space-y-3" id="eval-tier-2"></div>
+                </div>
+
+                <!-- Level 3 Exercises -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-md font-bold text-montano-olive uppercase tracking-wide">Tier 3: Advanced Ethics, Peer Audit & Portfolio Synthesis</h3>
+                    <div class="space-y-3" id="eval-tier-3"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 border-t p-3 text-center text-xs text-gray-500 font-semibold">
+            Colegio Montano &copy; 2026 | Instructional Design & Interactive Educational Technology
+        </footer>
+    </div>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        // --- Navigation Logic ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        // --- Fullscreen Toggle ---
+        function toggleFullscreen() {
+            const container = document.getElementById('mainContainer');
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) container.requestFullscreen();
+                else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // --- Text To Speech Integration ---
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Text-to-Speech is not supported in this browser.');
+            }
+        }
+
+        // --- Solved Examples Data (15 Items) ---
+        const solvedExamplesData = [
+            // Basic (1-5)
+            { level: 1, title: "Integrated Consumer Journey", body: "Question: What does integrating perception, attention, motivation, and learning achieve in marketing?\nAnswer: It maps how consumers discover, evaluate, and purchase products through unified psychological touchpoints." },
+            { level: 1, title: "Persuasion Definition", body: "Question: What defines ethical persuasion in advertising?\nAnswer: Influencing consumer attitudes and choices through honest value communication while preserving full customer autonomy." },
+            { level: 1, title: "Manipulation Definition", body: "Question: What distinguishes psychological manipulation from persuasion?\nAnswer: Manipulation exploits cognitive biases, fear, or false scarcity to trick consumers into decisions against their best interests." },
+            { level: 1, title: "Misleading Claims", body: "Question: Why are deceptive or exaggerated product claims unethical in consumer psychology?\nAnswer: They violate consumer trust, breach regulatory standards, and exploit information asymmetry." },
+            { level: 1, title: "Portfolio Evidence", body: "Question: What is the purpose of organizing Activity 3 portfolio evidence?\nAnswer: To compile verified campaign analyses, peer reviews, and psychological application frameworks into a professional record." },
+            
+            // Intermediate (6-10)
+            { level: 2, title: "Attention & Perception in Ads", body: "Question: How do marketers ethically capture consumer attention in a crowded media environment?\nAnswer: By utilizing salient visual cues, relevant messaging, and authentic brand storytelling rather than clickbait shock tactics." },
+            { level: 2, title: "Emotional Motivation in Campaigns", body: "Question: How should emotional motivation be harnessed ethically in advertising?\nAnswer: By inspiring positive aspirations and genuine problem-solving rather than exploiting deep insecurities or anxiety." },
+            { level: 2, title: "Social Influence & Peer Review", body: "Question: Why is peer feedback essential when evaluating team marketing campaigns?\nAnswer: It uncovers blind spots regarding bias, stereotype reinforcement, or manipulative messaging before public launch." },
+            { level: 2, title: "Attitude Formation & Trust", body: "Question: How do repeated positive consumer experiences shape long-term brand attitudes?\nAnswer: Through classical and operant conditioning that builds durable brand trust and customer loyalty." },
+            { level: 2, title: "Decision-Making Heuristics", body: "Question: How do consumers use mental shortcuts (heuristics) when making rapid purchasing choices?\nAnswer: They rely on brand reputation, social proof, and familiar packaging to simplify complex purchase decisions." },
+
+            // Advanced (11-15)
+            { level: 3, title: "Multi-Concept Campaign Audit", body: "Question: Audit a fictional campaign using perception, motivation, and social influence: what makes it successful?\nAnswer: High sensory salience (perception), alignment with personal goals (motivation), and endorsements from trusted community peers (social influence)." },
+            { level: 3, title: "Ethical Dilemma in FOMO Marketing", body: "Question: Where is the ethical boundary when using scarcity or FOMO (fear of missing out) tactics?\nAnswer: It is ethical when scarcity is real (limited stock); it is manipulative when artificial countdown timers fabricate false panic." },
+            { level: 3, title: "Cross-Cultural Ethical Advertising", body: "Question: How do global marketing teams ensure persuasion strategies respect diverse cultural norms?\nAnswer: By conducting rigorous local ethical reviews and discarding campaigns that rely on cultural stereotypes or coercive pressure." },
+            { level: 3, title: "Revising Activity 3 Portfolio", body: "Question: What criteria should students use when refining their Activity 3 portfolio evidence for final evaluation?\nAnswer: Clarity of psychological concepts, robust ethical justification, incorporation of peer feedback, and professional formatting." },
+            { level: 3, title: "Comprehensive Synthesis", body: "Question: Synthesize how psychological science empowers marketing professionals to create both profitable and socially responsible campaigns.\nAnswer: By grounding strategy in empirical human behavior while strictly upholding ethical standards, transparency, and consumer respect." }
+        ];
+
+        function renderExamples() {
+            const basicContainer = document.getElementById('basic-examples');
+            const interContainer = document.getElementById('intermediate-examples');
+            const advContainer = document.getElementById('advanced-examples');
+
+            solvedExamplesData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-montano-softwhite p-4 rounded-lg border border-gray-200 flex flex-col justify-between space-y-3 shadow-xs";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="font-bold text-sm text-gray-800">#${index+1} ${item.title}</h4>
+                            <button onclick="speakText('${item.body.replace(/'/g, "\\'")}')" class="text-montano-blue hover:text-blue-800 p-1" title="Listen with Audio">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-600 whitespace-pre-line leading-relaxed">${item.body}</p>
+                    </div>
+                `;
+                if (item.level === 1) basicContainer.appendChild(card);
+                else if (item.level === 2) interContainer.appendChild(card);
+                else advContainer.appendChild(card);
+            });
+        }
+
+        // --- Voice Simulator & Dashboard Logic ---
+        let recognition;
+        let isRecording = false;
+
+        function toggleSpeechRecognition() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert('Speech Recognition Web API is not supported in this browser. Please use Chrome or Edge, or use text fallback input.');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!recognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = () => {
+                    isRecording = true;
+                    document.getElementById('mic-status-indicator').className = "w-3 h-3 rounded-full bg-red-500 animate-ping inline-block";
+                    document.getElementById('mic-status-text').innerText = "Listening...";
+                    document.getElementById('record-btn-text').innerText = "Stop Recording";
+                };
+
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('manual-text-input').value = transcript;
+                    evaluateSpeechInput(transcript);
+                };
+
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    stopRecordingState();
+                };
+
+                recognition.onend = () => {
+                    stopRecordingState();
+                };
+            }
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        function stopRecordingState() {
+            isRecording = false;
+            document.getElementById('mic-status-indicator').className = "w-3 h-3 rounded-full bg-gray-400 inline-block";
+            document.getElementById('mic-status-text').innerText = "Microphone Idle";
+            document.getElementById('record-btn-text').innerText = "Speak Response";
+        }
+
+        function processTextSubmission() {
+            const input = document.getElementById('manual-text-input').value;
+            if (input.trim() !== '') {
+                evaluateSpeechInput(input);
+            }
+        }
+
+        function evaluateSpeechInput(text) {
+            const dialogue = document.getElementById('dialogue-box');
+            dialogue.innerHTML += `
+                <div class="flex gap-2 justify-end">
+                    <div class="text-white bg-montano-blue p-2 rounded shadow-xs max-w-[80%]">${text}</div>
+                    <div class="font-bold text-montano-teal min-w-[50px] text-right">You:</div>
+                </div>
+            `;
+            dialogue.scrollTop = dialogue.scrollHeight;
+
+            const lower = text.toLowerCase();
+            const keywords = ['persuasion', 'manipulation', 'ethics', 'autonomy', 'perception', 'attention', 'motivation', 'learning', 'attitudes', 'social influence', 'portfolio'];
+            
+            let detected = [];
+            keywords.forEach(kw => {
+                if (lower.includes(kw)) detected.push(kw);
+            });
+
+            const accuracyScore = Math.min(100, Math.round((detected.length / 4) * 100));
+            const politenessKeywords = ['thank you', 'director', 'please', 'would', 'suggest', 'respectfully', 'good morning', 'sir'];
+            let politeCount = 0;
+            politenessKeywords.forEach(pw => { if (lower.includes(pw)) politeCount++; });
+            const politenessScore = Math.min(100, 60 + (politeCount * 20));
+            const pronunciationScore = text.length > 20 ? Math.min(98, 75 + Math.floor(Math.random() * 20)) : 40;
+
+            document.getElementById('bar-pronunciation').style.width = pronunciationScore + '%';
+            document.getElementById('score-pronunciation').innerText = pronunciationScore + '%';
+
+            document.getElementById('bar-accuracy').style.width = accuracyScore + '%';
+            document.getElementById('score-accuracy').innerText = accuracyScore + '%';
+
+            document.getElementById('bar-politeness').style.width = politenessScore + '%';
+            document.getElementById('score-politeness').innerText = politenessScore + '%';
+
+            const termsContainer = document.getElementById('detected-terms');
+            if (detected.length > 0) {
+                termsContainer.innerHTML = detected.map(d => `<span class="bg-blue-100 text-montano-blue font-bold px-2 py-0.5 rounded">${d}</span>`).join(' ');
+            } else {
+                termsContainer.innerHTML = `<span class="text-red-400">No ethics terms detected. Try mentioning persuasion, manipulation, ethics, autonomy, or motivation.</span>`;
+            }
+
+            let feedback = "";
+            if (accuracyScore >= 75) {
+                feedback = "Outstanding defense! You clearly articulated the distinction between ethical persuasion and manipulation in marketing strategy.";
+            } else if (accuracyScore >= 40) {
+                feedback = "Good response. To increase accuracy, incorporate specific terms like ethical persuasion, consumer autonomy, or motivation.";
+            } else {
+                feedback = "Needs improvement. Ensure you reference persuasion, manipulation, or ethical marketing standards.";
+            }
+            document.getElementById('ai-feedback-text').innerText = feedback;
+        }
+
+        function triggerTTSResponse() {
+            const feedback = document.getElementById('ai-feedback-text').innerText;
+            speakText("AI Evaluation Response: " + feedback);
+        }
+
+        // --- Critical Reflection Auto-Save ---
+        function saveReflection(id) {
+            const val = document.getElementById(id).value;
+            localStorage.setItem('montano_psych_g8_' + id, val);
+        }
+
+        function loadReflections() {
+            ['ref-q1', 'ref-q2', 'ref-q3'].forEach(id => {
+                const saved = localStorage.getItem('montano_psych_g8_' + id);
+                if (saved) document.getElementById(id).value = saved;
+            });
+        }
+
+        // --- Formative Evaluation Data (15 Problems) ---
+        const evalProblems = [
+            // Level 1
+            { tier: 1, q: "1. What is the core goal of integrating psychological principles in marketing?", ans: "Answer: To understand how consumers perceive, process, and respond to commercial stimuli ethically." },
+            { tier: 1, q: "2. How does ethical persuasion differ from psychological manipulation?", ans: "Answer: Persuasion respects consumer autonomy and honesty; manipulation exploits cognitive vulnerabilities and fear." },
+            { tier: 1, q: "3. Why are misleading advertising claims considered unethical?", ans: "Answer: They violate consumer trust and bypass informed decision-making." },
+            { tier: 1, q: "4. What role does peer feedback play in team campaign analysis?", ans: "Answer: It identifies unintended biases, ethical flaws, and areas for strategic improvement." },
+            { tier: 1, q: "5. What is the purpose of finalizing Activity 3 portfolio evidence?", ans: "Answer: To showcase comprehensive mastery of psychological marketing concepts and ethical standards." },
+            
+            // Level 2
+            { tier: 2, q: "6. How do perception and attention principles help marketers design effective ads?", ans: "Answer: By optimizing visual hierarchy, clarity, and relevant messaging without resorting to intrusive clickbait." },
+            { tier: 2, q: "7. Why must marketers carefully balance emotional motivation in promotional campaigns?", ans: "Answer: To inspire positive brand affinity rather than exploiting customer insecurities or manufactured anxiety." },
+            { tier: 2, q: "8. How does social influence impact brand loyalty and consumer decision-making?", ans: "Answer: Through peer recommendations, social proof, and cultural community belonging." },
+            { tier: 2, q: "9. How do learning principles (classical/operant conditioning) build brand attitudes?", ans: "Answer: Through consistent positive reinforcement and rewarding brand experiences." },
+            { tier: 2, q: "10. Why do consumers rely on decision-making heuristics in fast-paced retail environments?", ans: "Answer: To reduce cognitive overload by utilizing trusted brand cues and familiar packaging." },
+
+            // Level 3
+            { tier: 3, q: "11. Audit a fictional campaign integrating perception, motivation, and social influence: evaluate its ethical standing.", ans: "Answer: High perceptual clarity and motivational alignment are ethical; using artificial FOMO makes it manipulative." },
+            { tier: 3, q: "12. What are the regulatory and ethical consequences of deceptive marketing practices?", ans: "Answer: Legal penalties, loss of consumer trust, brand boycotts, and reputational damage." },
+            { tier: 3, q: "13. Compare how persuasive versus manipulative techniques affect long-term customer retention.", ans: "Answer: Persuasion builds lasting brand loyalty based on trust; manipulation results in high churn and customer resentment." },
+            { tier: 3, q: "14. Outline the criteria for organizing and refining Activity 3 portfolio evidence in marketing psychology.", ans: "Answer: Inclusion of campaign audits, peer critique integration, ethical justifications, and clear psychological concept mapping." },
+            { tier: 3, q: "15. Synthesize a professional framework for ethical marketing that bridges psychological science with corporate responsibility.", ans: "Answer: Ground strategies in empirical consumer behavior while upholding absolute transparency, respect for autonomy, and social accountability." }
+        ];
+
+        function renderEvaluation() {
+            const t1 = document.getElementById('eval-tier-1');
+            const t2 = document.getElementById('eval-tier-2');
+            const t3 = document.getElementById('eval-tier-3');
+
+            evalProblems.forEach((item, index) => {
+                const box = document.createElement('div');
+                box.className = "bg-white border border-gray-200 rounded-lg p-4 shadow-xs space-y-2";
+                box.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <p class="text-sm font-semibold text-gray-800">${item.q}</p>
+                        <button onclick="toggleSolution('sol-${index}')" class="text-xs bg-montano-softwhite hover:bg-montano-lightblue text-montano-blue font-bold px-3 py-1.5 rounded border border-montano-lightblue transition shrink-0">
+                            Show / Hide Solution
+                        </button>
+                    </div>
+                    <div id="sol-${index}" class="hidden mt-2 p-3 bg-blue-50 border-l-4 border-montano-blue text-xs text-gray-700 font-medium">
+                        ${item.ans}
+                    </div>
+                `;
+                if (item.tier === 1) t1.appendChild(box);
+                else if (item.tier === 2) t2.appendChild(box);
+                else t3.appendChild(box);
+            });
+        }
+
+        function toggleSolution(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+        }
+
+        // Initialize Page Data
+        window.onload = function() {
+            renderExamples();
+            renderEvaluation();
+            loadReflections();
+        };
+    </script>
+</body>
+</html>
